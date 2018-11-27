@@ -60,7 +60,7 @@ class ConnectionHandler {
             ["updateChannelsList", new Observable()],
             ["onError", new Observable()],
             ["onPeerSignal", new Observable()],
-            ['onJoinedVoiceObserver', new Observable()]
+            ['onJoinedVoiceChannel', new Observable()]
         ]);
         this.socket = null;
     }
