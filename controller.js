@@ -367,6 +367,7 @@ class ChatController {
         if (vocalChannelId && vocalChannelId === channelId) {
             this.model.user.vocalChannelId = null;
             this.model.user.localAudioStream = null;
+            const audioNotifs = document.getElementById('notifs-audio');
             audioNotifs.src = './sounds/on-leave-channel.mp3';
             audioNotifs.play();
             return this.render();
@@ -398,7 +399,6 @@ class ChatController {
 
                 peer.on('connect', function() {
                     peer.send('Hey server, we\'re connected !');
-                    audioNotifs.play();
                 });
 
                 peer.on('stream', function(incomingStream) {
