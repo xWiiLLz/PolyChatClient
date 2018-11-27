@@ -1,6 +1,6 @@
 'use strict';
 const knownHosts = [
-    'ws://inter-host.ca:3000',              // Notre serveur alternatif
+    'wss://inter-host.ca',              // Notre serveur alternatif
     'ws://log2420-nginx.info.polymtl.ca'    // Serveur OFFICIEL de Polytechnique
     ];
 const baseURL = knownHosts[0];
