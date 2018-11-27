@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PolyChat</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css?family=K2D|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <div id="logoContainer"></div>
+        <nav>
+        </nav>
+    </header>
+    <main>
+        <div id="chat-window"></div>
+        <div id="groups-list"></div>
+    </main>
+    <div id="username-chooser" class="modal-container"></div>
+    <div id="add-group-container" class="modal-container hidden"></div>
+    <div id="errors-container" class="modal-container hidden"></div>
+    <div id="loader-container" class="modal-container hidden"></div>
+    <script src="sanitize-html.min.js" type="text/javascript"></script>
+    <script src="message.js" type="text/javascript"></script>
+    <script src="channel.js" type="text/javascript"></script>
+    <script src="channelsObserver.js" type="text/javascript"></script>
+    <script src="messagesObserver.js" type="text/javascript"></script>
+    <script src="models.js" type="text/javascript"></script>
+    <script src="connectionHandler.js" type="text/javascript"></script>
+    <script src="views.js" type="text/javascript"></script>
+    <script src="controller.js" type="text/javascript"></script>
+    <script src="errorsObserver.js" type="text/javascript"></script>
+    <script src="localization.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+</body>
+</html>
