@@ -349,7 +349,7 @@ class ChatController {
     /**
      * Toggles the vocal channel of a specified channel
      */
-    onClickToggleVocalChannel() {
+    onClickToggleVocalChannel(event) {
         event.preventDefault();
         event.stopPropagation();
 
