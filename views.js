@@ -188,7 +188,7 @@ class GroupsListView extends View {
              <div class="audio-streams">
                 ${user.streams && user.streams.length > 0 ? 
                     user.streams.reduce((acc, stream) => {
-                        acc += `<audio src="${window.URL.createObjectURL(stream)}"></audio>`;
+                        acc += `<audio></audio>`;
                         return acc;
                     }, '')
                 : ''}            
@@ -204,7 +204,13 @@ class GroupsListView extends View {
         });
         this.container.querySelector('#add-group-button').addEventListener('click', this.onClickShowAddGroup);
 
-        this.container.querySelectorAll('.audio-streams > audio').forEach(a => a.play());
+        this.container.querySelectorAll('.audio-streams > audio').forEach((a, index) => {
+            const {streams} = user;
+            if (index >= streams.length)
+                return;
+            a.srcObject = streams[index];
+            a.play()
+        });
     }
 }
 
