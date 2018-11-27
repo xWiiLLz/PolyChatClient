@@ -183,8 +183,16 @@ class GroupsListView extends View {
                         </div>
                     `;
                 return acc;
-            }, '')}            
+            }, '')}      
              </div>             
+             <div class="audio-streams">
+                ${user.streams && user.streams.length > 0 ? 
+                    user.streams.reduce((acc, stream) => {
+                        acc += `<audio src="${window.URL.createObjectURL(stream)}"></audio>`
+                        return acc;
+                    }, '')
+                : ''}            
+             </div>
             `;
         let channelElements = this.container.querySelectorAll('.channel');
         channelElements.forEach(x => {
@@ -195,6 +203,8 @@ class GroupsListView extends View {
             x.querySelector('.vocal-channel-toggler').addEventListener('click', this.onClickToggleVocalChannel);
         });
         this.container.querySelector('#add-group-button').addEventListener('click', this.onClickShowAddGroup);
+
+        this.container.querySelectorAll('.audio-streams > audio').forEach(a => a.play());
     }
 }
 

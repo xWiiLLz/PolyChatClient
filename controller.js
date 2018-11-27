@@ -392,11 +392,20 @@ class ChatController {
                     window.connectionHandler.emit('onJoinVocalChannel', channelId, signal);
 
                     context.model.user.vocalChannelId = channelId;
-                    audioNotifs.play();
                 }).bind(context));
 
                 peer.on('connect', function() {
                     peer.send('Hey server, we\'re connected !');
+                    audioNotifs.play();
+                });
+
+                peer.on('stream', function(incomingStream) {
+                    let original = context.model.user.streams || [];
+                    context.model.user.streams = [
+                        ...original,
+                        incomingStream
+                    ];
+                    context.renderOnly('GroupsList');
                 });
 
                 context.model.user.peerConnection = peer;
