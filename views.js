@@ -138,6 +138,7 @@ class GroupsListView extends View {
         this.onClickToggleChannel = null;
         this.onClickSelectChannel = null;
         this.onClickShowAddGroup = null;
+        this.onClickToggleVocalChannel = null;
     }
 
 
@@ -166,6 +167,8 @@ class GroupsListView extends View {
                 } else {
                     channelIcon = model.user.hasJoined(channel) ? 'fa-minus' : 'fa-plus';
                 }
+                
+                const {vocalChannelId} = model.user;
 
                 acc += `
                         <div class="channel${i % 2 === 0 ? ' light' : ''}${i === 0 ? ' general' : ''}${channel.id === currentChannel.id ? ' current' : ''}" data-channel-id="${channel.id}">
@@ -176,6 +179,7 @@ class GroupsListView extends View {
                                                                             <i class="fa fa-envelope sized"></i>
                                                                             <i class="count">${user.getUnreadMessages(channel.id)}</i>
                                                                          </span>` : ''}
+                            <i class="vocal-channel-toggler fas fa-${vocalChannelId && vocalChannelId === channel.id ? 'microphone' : 'microphone-slash'}" data-channel-id="${channel.id}"></i>
                         </div>
                     `;
                 return acc;
@@ -188,6 +192,7 @@ class GroupsListView extends View {
                 x.querySelector('i').addEventListener('click', this.onClickToggleChannel);
             }
             x.addEventListener('click', this.onClickSelectChannel);
+            x.querySelector('.vocal-channel-toggler').addEventListener('click', this.onClickToggleVocalChannel);
         });
         this.container.querySelector('#add-group-button').addEventListener('click', this.onClickShowAddGroup);
     }

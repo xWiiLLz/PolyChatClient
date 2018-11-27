@@ -18,11 +18,13 @@
         <div id="chat-window"></div>
         <div id="groups-list"></div>
     </main>
+    <audio style="display:none" id="notifs-audio"></audio>
     <div id="username-chooser" class="modal-container"></div>
     <div id="add-group-container" class="modal-container hidden"></div>
     <div id="errors-container" class="modal-container hidden"></div>
     <div id="loader-container" class="modal-container hidden"></div>
     <script src="sanitize-html.min.js" type="text/javascript"></script>
+    <script src="simplepeer.min.js" type="text/javascript"></script>
     <script src="message.js" type="text/javascript"></script>
     <script src="channel.js" type="text/javascript"></script>
     <script src="channelsObserver.js" type="text/javascript"></script>
@@ -32,6 +34,7 @@
     <script src="views.js" type="text/javascript"></script>
     <script src="controller.js" type="text/javascript"></script>
     <script src="errorsObserver.js" type="text/javascript"></script>
+    <script src="voiceObserver.js" type="text/javascript"></script>
     <script src="localization.js" type="text/javascript"></script>
     <script src="main.js" type="text/javascript"></script>
 </body>

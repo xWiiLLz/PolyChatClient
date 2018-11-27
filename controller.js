@@ -347,6 +347,67 @@ class ChatController {
     }
 
     /**
+     * Toggles the vocal channel of a specified channel
+     */
+    onClickToggleVocalChannel() {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const {channelId} = event.currentTarget.dataset;
+
+        const {vocalChannelId} = this.model.user;
+
+        const audioNotifs = document.getElementById('notifs-audio');
+        if (vocalChannelId) {
+            window.connectionHandler.emit('onLeaveVocalChannel', vocalChannelId, null);
+            this.model.user.peerConnection = null;
+        }
+
+        let {localAudioStream} = this.model.user;
+        audioNotifs.src = './sounds/on-joined-channel.mp3';
+
+        if (vocalChannelId && vocalChannelId === channelId) {
+            this.model.user.vocalChannelId = null;
+            this.model.user.localAudioStream = null;
+            audioNotifs.src = './sounds/on-leave-channel.mp3';
+            audioNotifs.play();
+            return this.render();
+        }
+
+        let context = this;
+        // At this point, we want to initiate the peer connection with the server
+
+        if(navigator.mediaDevices.getUserMedia) {
+            const constraints = { audio: true, video: false};
+            navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+                console.log('got stream');
+                context.model.user.localAudioStream = stream;
+                const peer = new SimplePeer({
+                    initiator: true,
+                    stream
+                });
+
+                peer.on('signal', (function(signal) {
+                    console.log(`Received signal : ${signal}`);
+                    window.connectionHandler.emit('onJoinVocalChannel', channelId, signal);
+
+                    context.model.user.vocalChannelId = channelId;
+                    audioNotifs.play();
+                }).bind(context));
+
+                peer.on('connect', function() {
+                    peer.send('Hey server, we\'re connected !');
+                });
+
+                context.model.user.peerConnection = peer;
+            }).catch((e) => console.error(e))
+                .finally(() => this.render());
+        } else {
+            alert('Your browser does not support getUserMedia API');
+        }
+    }
+
+    /**
      * Handler for the AddGroup's cancel click event. This hides the AddGroup modal.
      */
     onClickCancelAddGroup() {

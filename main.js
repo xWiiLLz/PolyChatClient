@@ -1,4 +1,10 @@
 'use strict';
+navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+window.RTCIceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate || window.webkitRTCIceCandidate;
+window.RTCSessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription || window.webkitRTCSessionDescription;
+window.peerConnectionConfig = {'iceServers': [{'url': 'stun:stun.services.mozilla.com'}, {'url': 'stun:stun.l.google.com:19302'}]};
+
 const knownHosts = [
     'wss://inter-host.ca/staging',              // Notre serveur alternatif
     'ws://log2420-nginx.info.polymtl.ca'    // Serveur OFFICIEL de Polytechnique
@@ -25,6 +31,7 @@ window.initiateConnection = async () => {
         handler.subscribe('onGetChannel', ChannelsObserver.getChannelObserver);
         handler.subscribe('onMessage', messagesObserver);
         handler.subscribe('onError', errorsObserver);
+        handler.subscribe('onPeerSignal', VoiceObserver.onPeerSignal);
     }
 
     await handler.connect().catch((e) => {
@@ -63,6 +70,7 @@ window.entryPoint = async () => {
     groupsListView.onClickToggleChannel = chatController.onClickToggleChannel.bind(chatController);
     groupsListView.onClickSelectChannel = chatController.onClickSelectChannel.bind(chatController);
     groupsListView.onClickShowAddGroup = chatController.onClickShowAddGroup.bind(chatController);
+    groupsListView.onClickToggleVocalChannel = chatController.onClickToggleVocalChannel.bind(chatController);
 
     let chatWindowView = new ChatWindowView(document.querySelector('#chat-window'));
     chatWindowView.onClickSendButton = chatController.onClickSendButton.bind(chatController);

@@ -58,7 +58,8 @@ class ConnectionHandler {
             ["onJoinChannel", new Observable()],
             ["onLeaveChannel", new Observable()],
             ["updateChannelsList", new Observable()],
-            ["onError", new Observable()]
+            ["onError", new Observable()],
+            ["onPeerSignal", new Observable()]
         ]);
         this.socket = null;
     }
