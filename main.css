@@ -442,3 +442,8 @@ input#username-input, input#add-group-input {
 }
 
 /* End error modal */
+
+
+audio {
+    display: none;
+}

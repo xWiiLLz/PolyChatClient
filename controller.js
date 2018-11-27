@@ -357,14 +357,12 @@ class ChatController {
 
         const {vocalChannelId} = this.model.user;
 
-        const audioNotifs = document.getElementById('notifs-audio');
         if (vocalChannelId) {
             window.connectionHandler.emit('onLeaveVocalChannel', vocalChannelId, null);
             this.model.user.peerConnection = null;
         }
 
         let {localAudioStream} = this.model.user;
-        audioNotifs.src = './sounds/on-joined-channel.mp3';
 
         if (vocalChannelId && vocalChannelId === channelId) {
             this.model.user.vocalChannelId = null;
@@ -381,15 +379,19 @@ class ChatController {
             const constraints = { audio: true, video: false};
             navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
                 console.log('got stream');
+
                 context.model.user.localAudioStream = stream;
+
                 const peer = new SimplePeer({
                     initiator: true,
                     stream
                 });
 
                 peer.on('signal', (function(signal) {
-                    console.log(`Received signal : ${signal}`);
-                    window.connectionHandler.emit('onJoinVocalChannel', channelId, signal);
+                    window.connectionHandler.emit('onJoinVocalChannel', channelId, {
+                        signal,
+                        streamId: stream.id
+                    });
 
                     context.model.user.vocalChannelId = channelId;
                 }).bind(context));

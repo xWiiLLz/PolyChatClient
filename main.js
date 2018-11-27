@@ -32,6 +32,7 @@ window.initiateConnection = async () => {
         handler.subscribe('onMessage', messagesObserver);
         handler.subscribe('onError', errorsObserver);
         handler.subscribe('onPeerSignal', VoiceObserver.onPeerSignal);
+        handler.subscribe('onJoinedVoiceObserver', VoiceObserver.onJoinedVoiceObserver);
     }
 
     await handler.connect().catch((e) => {

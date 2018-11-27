@@ -9,20 +9,19 @@ class VoiceObserver {
 
         const {data: signal} = peerSignal;
 
-        console.log(`Received a signal from the server: ${signal}`)
-
         peerConnection.signal(signal);
     }
 
-    static onVoiceObserver(channelsEvent) {
-        console.log('Got onVoice');
-    }
+    static onJoinedVoiceObserver(onJoinedVoiceEvent) {
+        // We successfully joined the voice channel
+        const {channelId} = onJoinedVoiceEvent;
 
-    static onJoinVoiceObserver(onJoinVoiceEvent) {
-        // We got called by a new peer in our server
-    }
+        window.chatModel.user.vocalChannelId = channelId;
 
-    static onLeaveVoiceObserver(onLeaveVoiceEvent) {
+        const audioNotifs = document.getElementById('notifs-audio');
+        audioNotifs.src = './sounds/on-joined-channel.mp3';
+        audioNotifs.play();
 
+        window.chatController.render();
     }
 }
