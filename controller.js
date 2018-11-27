@@ -367,6 +367,7 @@ class ChatController {
         if (vocalChannelId && vocalChannelId === channelId) {
             this.model.user.vocalChannelId = null;
             this.model.user.localAudioStream = null;
+            this.model.user.streams = [];
             const audioNotifs = document.getElementById('notifs-audio');
             audioNotifs.src = './sounds/on-leave-channel.mp3';
             audioNotifs.play();
