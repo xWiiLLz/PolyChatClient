@@ -1,5 +1,5 @@
 # PolyChat - Équipe 042
-Voici notre application cliente pour le TD2 du cours LOG2420 (Analyse et conception d'interfaces utilisateur) de la Polytechnique Montréal.
+Voici notre application cliente pour le TD2 du cours LOG2420 (Analyse et conception d'interfaces utilisateur) de la Polytechnique Montréal, poussé plus loin! :D
 
 ## Architecture
 Notre conception est réalisée selon l'architecture MVC. Vous trouverez le contrôleur 
