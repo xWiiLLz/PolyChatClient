@@ -1,7 +1,7 @@
 /* Groups list specific */
 #groups-list {
   background-color: white;
-  &.mobile-toggler {
+  & .mobile-toggler {
     display: none;
   }
 }
@@ -9,11 +9,11 @@
 @include mobile() {
   #groups-list {
     transition: left 0.6s;
-    border-left: solid 5px $background-color;
+    border-left: solid $groups-list-mobile-border-width $background-color;
     position: absolute;
-    left: calc(100% - 5px);
+    left: calc(100% - #{$groups-list-mobile-border-width});
     width: calc(100% - 30px);
-    height: 100%;
+    height: calc(100% - #{$chat-window-padding-top});
 
     & .heading {
       background-color: $orange-accent;
@@ -24,6 +24,7 @@
     }
 
     & .mobile-toggler {
+      cursor: pointer;
       position: absolute;
       top: 50%;
       left: -25px;
@@ -48,6 +49,7 @@
   overflow-y: auto;
   background-color: white;
   z-index: 20;
+  flex: 1;
 }
 
 

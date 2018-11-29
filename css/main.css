@@ -6,7 +6,10 @@ body {
   font-family: 'K2D', sans-serif;
   font-size: 15px;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden; }
 
 h2 {
   font-size: 18px;
@@ -107,6 +110,10 @@ main {
   display: flex;
   flex-direction: column;
   background-color: white; }
+
+@media (max-width: 900px) {
+  #chat-window {
+    max-width: calc(100vw - 5px); } }
 
 #groups-list {
   width: 33%;
@@ -257,7 +264,7 @@ input[name="message"] {
 /* Groups list specific */
 #groups-list {
   background-color: white; }
-  #groups-list.mobile-toggler {
+  #groups-list .mobile-toggler {
     display: none; }
 
 @media (max-width: 900px) {
@@ -267,12 +274,13 @@ input[name="message"] {
     position: absolute;
     left: calc(100% - 5px);
     width: calc(100% - 30px);
-    height: 100%; }
+    height: calc(100% - 20px); }
     #groups-list .heading {
       background-color: #ff6b21; }
     #groups-list.collapsed {
       left: 30px; }
     #groups-list .mobile-toggler {
+      cursor: pointer;
       position: absolute;
       top: 50%;
       left: -25px;
@@ -292,7 +300,8 @@ input[name="message"] {
   padding: 25px 5px;
   overflow-y: auto;
   background-color: white;
-  z-index: 20; }
+  z-index: 20;
+  flex: 1; }
 
 .channel {
   background-color: #edeeee;

@@ -44,6 +44,12 @@ main {
   background-color: white;
 }
 
+@include mobile() {
+  #chat-window {
+    max-width: calc(100vw - #{$groups-list-mobile-border-width}); // Side navbar border
+  }
+}
+
 #groups-list {
   width: 33%;
   min-width: 200px;
