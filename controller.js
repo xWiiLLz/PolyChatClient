@@ -347,6 +347,15 @@ class ChatController {
     }
 
     /**
+     * Handler for the groups-list's mobile toggler
+     */
+    onClickToggleMobileGroupsList() {
+        const {collapsedGroupsList} = this.model.displayingStates;
+        this.model.displayingStates.collapsedGroupsList = !collapsedGroupsList;
+        this.invokeViewMethod('GroupsList', 'applyVisibility', [this.model]);
+    }
+
+    /**
      * Toggles the vocal channel of a specified channel
      */
     onClickToggleVocalChannel(event) {

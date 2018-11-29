@@ -139,6 +139,7 @@ class GroupsListView extends View {
         this.onClickSelectChannel = null;
         this.onClickShowAddGroup = null;
         this.onClickToggleVocalChannel = null;
+        this.onClickToggleMobileGroupsList = null;
     }
 
 
@@ -159,6 +160,7 @@ class GroupsListView extends View {
                     </div>
                 </div>
              </div>
+             <i class="mobile-toggler fas fa-ellipsis-v"></i>
              <div class="channels-container">
                 ${model.channels.reduce((acc, channel, i, arr) => {
                 let channelIcon;
@@ -211,6 +213,16 @@ class GroupsListView extends View {
             a.srcObject = streams[index];
             a.play()
         });
+
+        let mobileToggler = this.container.querySelector('.mobile-toggler');
+        mobileToggler.addEventListener('click', this.onClickToggleMobileGroupsList);
+
+        this.applyVisibility(model);
+    }
+
+    applyVisibility(model) {
+        const {collapsedGroupsList} = model.displayingStates;
+        this.container.classList[collapsedGroupsList ? 'add' : 'remove']('collapsed');
     }
 }
 
@@ -289,7 +301,8 @@ class ChatWindowView extends View {
             let input = this.container.querySelector('input[name="message"]');
             input.addEventListener('keyup', this.onInputKeyUp);
             input.addEventListener('blur', this.onInputBlur);
-            input.focus();
+            if (!window.isMobile())
+                input.focus();
         }
     }
 

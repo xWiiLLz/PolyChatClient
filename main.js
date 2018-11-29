@@ -5,6 +5,9 @@ window.RTCIceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate || 
 window.RTCSessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription || window.webkitRTCSessionDescription;
 window.peerConnectionConfig = {'iceServers': [{'url': 'stun:stun.services.mozilla.com'}, {'url': 'stun:stun.l.google.com:19302'}]};
 
+window.isMobile = () => {return window.innerWidth < 600};
+
+
 const knownHosts = [
     'wss://inter-host.ca/staging',              // Notre serveur alternatif
     'ws://log2420-nginx.info.polymtl.ca'    // Serveur OFFICIEL de Polytechnique
@@ -71,6 +74,7 @@ window.entryPoint = async () => {
     groupsListView.onClickToggleChannel = chatController.onClickToggleChannel.bind(chatController);
     groupsListView.onClickSelectChannel = chatController.onClickSelectChannel.bind(chatController);
     groupsListView.onClickShowAddGroup = chatController.onClickShowAddGroup.bind(chatController);
+    groupsListView.onClickToggleMobileGroupsList = chatController.onClickToggleMobileGroupsList.bind(chatController);
     groupsListView.onClickToggleVocalChannel = chatController.onClickToggleVocalChannel.bind(chatController);
 
     let chatWindowView = new ChatWindowView(document.querySelector('#chat-window'));

@@ -1,0 +1,12 @@
+/* Errors modal */
+#errors-container {
+  & .error-icon {
+    font-size: 50px;
+    color: $secondary-color-light-accent;
+  }
+
+  & .error-message {
+    margin: 10px 0;
+  }
+}
+/* End error modal */

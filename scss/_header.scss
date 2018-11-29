@@ -1,0 +1,78 @@
+/* Header logo */
+#logo {
+  text-decoration: none;
+}
+
+header {
+  h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #ff6b21;
+
+    & > i {
+      color: #333;
+      font-size: 20px;
+    }
+
+    & > span {
+      color: #0897d4;
+    }
+  }
+}
+/* End Header logo */
+
+
+/* Header layout */
+header {
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #edeeee;
+}
+
+@include mobile() {
+  header {
+    flex-direction: column;
+  }
+}
+
+/* End Header layout */
+
+/* Navigation links */
+nav {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 20px;
+  height: 40px;
+}
+
+.action-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  padding: 0 15px;
+  min-width: 30px;
+  height: 50px;
+  cursor: pointer;
+
+  &:hover {
+    color: #ff671b;
+  }
+  &:hover, &:focus, &:visited {
+    text-decoration: none;
+  }
+
+  & > span.descriptor {
+    margin-top: 5px;
+  }
+
+  & > .user-name {
+    color: #85c42a;
+    white-space: nowrap;
+  }
+}
+/* End Navigation Links */

@@ -1,0 +1,141 @@
+/* Groups list specific */
+#groups-list {
+  background-color: white;
+  &.mobile-toggler {
+    display: none;
+  }
+}
+
+@include mobile() {
+  #groups-list {
+    transition: left 0.6s;
+    border-left: solid 5px $background-color;
+    position: absolute;
+    left: calc(100% - 5px);
+    width: calc(100% - 30px);
+    height: 100%;
+
+    & .heading {
+      background-color: $orange-accent;
+    }
+
+    &.collapsed {
+      left: 30px;
+    }
+
+    & .mobile-toggler {
+      position: absolute;
+      top: 50%;
+      left: -25px;
+      border-radius: 50%;
+      background-color: $background-color;
+      width: 30px;
+      height: 40px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.icons i {
+  margin: 0 5px;
+}
+
+.channels-container {
+  padding: 25px 5px;
+  overflow-y: auto;
+  background-color: white;
+  z-index: 20;
+}
+
+
+.channel {
+  background-color: #edeeee;
+  padding: 5px;
+  color: #4d8cc0;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+
+  &.current {
+    border-left: 4px solid $primary-color;
+  }
+
+  &.light {
+    background-color: #f9f9f9;
+  }
+
+  & > i {
+    color: $secondary-color;
+    padding: 10px 20px;
+  }
+
+  &:hover {
+    background-color: #dddddd;
+
+    & i.count {
+      color: white;
+    }
+    & i:not(.action) {
+      color: $orange-accent-darker;
+    }
+  }
+
+  & i.fa {
+    &.fa-minus:hover {
+      color: $orange-accent-darker;
+    }
+
+    &.fa-plus {
+      color: $primary-color;
+      &:hover {
+        color: $breaker-bay-darker;
+      }
+    }
+  }
+}
+
+.default-badge {
+  color: #49afde;
+  border: solid 1px #49afde;
+  margin-left: 10px;
+  background-color: white;
+  padding: 0 10px;
+  font-style: italic;
+  border-radius: 18px;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.notifs {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+
+  & > i.fa.sized {
+    font-size: 20px;
+  }
+
+  & > i.count {
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    top: -5px;
+    font-style: normal;
+    right: -10px;
+    position: absolute;
+  }
+}
+
+#add-group-button {
+  cursor: pointer;
+}
+/* End Groups list specific */
