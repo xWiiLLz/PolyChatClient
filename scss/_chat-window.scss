@@ -42,19 +42,13 @@ main {
   display: flex;
   flex-direction: column;
   background-color: white;
+  min-width: 0;
 }
 
 @include mobile() {
   #chat-window {
     max-width: calc(100vw - #{$groups-list-mobile-border-width}); // Side navbar border
   }
-}
-
-#groups-list {
-  width: 33%;
-  min-width: 200px;
-  display: flex;
-  flex-direction: column;
 }
 /* End Chat window*/
 
@@ -79,6 +73,9 @@ main {
 }
 
 .message {
+  & , & img {
+    max-width: 100%;
+  }
 
   &.other-user {
     align-self: flex-start;

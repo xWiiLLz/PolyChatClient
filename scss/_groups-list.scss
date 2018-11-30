@@ -1,6 +1,10 @@
 /* Groups list specific */
 #groups-list {
   background-color: white;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+
   & .mobile-toggler {
     display: none;
   }
